@@ -37,7 +37,7 @@ public class ScheduleTweet {
 
   private static final Logger LOG = LoggerFactory.getLogger(ScheduleTweet.class);
 
-  @Value("${twitter.timezone:Europe/Berlin}")
+  @Value("${user.timezone:Europe/Berlin}")
   private String timezone;
 
   @Autowired
@@ -54,7 +54,7 @@ public class ScheduleTweet {
    * |      |       |       |       |      day of the week (0-6 with 0=Sunday).
    * |      |       |       |       |      |
    */
-  @Scheduled(cron = "${twitter.dailySchedule:0 31 5 1/1 * ?}")
+  @Scheduled(cron = "${twitter.scheduler.daily.cron:0 31 5 1/1 * ?}")
   public void postDaily() {
     final ZonedDateTime now = ZonedDateTime.now(ZoneId.of(this.timezone));
     final ZodiacUtil zodiacUtil = new ZodiacUtil(now);
@@ -73,7 +73,7 @@ public class ScheduleTweet {
     }
   }
 
-  @Scheduled(cron = "${twitter.firstDaySchedule:0 31 5 * * ?}")
+  @Scheduled(cron = "${twitter.scheduler.firstDay.cron:0 31 5 * * ?}")
   public void postOnFirstDay() {
     final ZonedDateTime now = ZonedDateTime.now(ZoneId.of(this.timezone));
     final ZodiacUtil zodiacUtil = new ZodiacUtil(now);
@@ -92,7 +92,7 @@ public class ScheduleTweet {
     }
   }
 
-  @Scheduled(cron = "${twitter.firstDaySchedule:0 0 * * * ?}")
+  @Scheduled(cron = "${twitter.scheduler.print.cron:0 0 * * * ?}")
   public void printCurrentState() {
     final ZonedDateTime now = ZonedDateTime.now(ZoneId.of(this.timezone));
     final ZodiacUtil zodiacUtil = new ZodiacUtil(now);

@@ -44,7 +44,7 @@ public class Application {
   @Value("${doSingleTweet:false}")
   private boolean doSingleTweet;
 
-  @Value("${twitter.timezone:Europe/Berlin}")
+  @Value("${user.timezone:Europe/Berlin}")
   private String timezone;
 
   @Autowired
