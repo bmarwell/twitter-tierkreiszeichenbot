@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./.bash_profile
+. $HOME/.bash_profile
 
 LATEST_ARTIFACT=$(curl \
   -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
