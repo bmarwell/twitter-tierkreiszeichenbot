@@ -5,7 +5,7 @@ sudo: false
 cache:
   directories:
     - '$HOME/.m2'
-    - '$HOME/.jabba'
+    - '$HOME/.jabba/jdk'
 
 addons:
   apt:
@@ -17,11 +17,11 @@ addons:
 install:
   # install jabba, if not existent
   - bash ./install-jabba.sh
-  - . $HOME/.bash_profile
+  - . $HOME/.jabba/jabba.sh
   # install jdk if not installed
   - bash ./install-jdk.sh
-  - . $HOME/.bash_profile && jabba use adopt-openj9@1.11.0-2
-  - export JAVA_HOME="$(. $HOME/.bash_profile && jabba which adopt-openj9@1.11.0-2)"
+  - . $HOME/.jabba/jabba.sh && jabba use adopt-openj9@1.11.0-2
+  - export JAVA_HOME="$(. $HOME/.jabba/jabba.sh && jabba which adopt-openj9@1.11.0-2)"
   # install code cov jar
   - bash ./install-codecov.sh
 
