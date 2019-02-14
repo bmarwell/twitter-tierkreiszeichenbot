@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # twitter-tierkreiszeichenbot
 A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar graph.
 
