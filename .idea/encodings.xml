@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/persist/api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/persist/sqlite" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/progressbar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/report" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zodiac" charset="UTF-8" />
   </component>
 </project>

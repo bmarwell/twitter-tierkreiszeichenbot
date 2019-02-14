@@ -9,6 +9,7 @@
         <module name="progressbar" />
         <module name="sqlite" />
         <module name="tierkreiszeichenbot-bot" />
+        <module name="tierkreiszeichenbot-report" />
         <module name="zodiac" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="tierkreiszeichenbot-parent" target="1.8" />
       <module name="tierkreiszeichenbot-persist-api" target="1.8" />
       <module name="tierkreiszeichenbot-persist-sqlite" target="1.8" />
+      <module name="tierkreiszeichenbot-report" target="1.8" />
       <module name="twitter-tierkreiszeichenbot" target="1.8" />
       <module name="zodiac" target="1.8" />
     </bytecodeTargetLevel>
@@ -30,6 +32,7 @@
       <module name="tierkreiszeichenbot-common-value" options="-parameters" />
       <module name="tierkreiszeichenbot-persist-api" options="-parameters" />
       <module name="tierkreiszeichenbot-persist-sqlite" options="-parameters" />
+      <module name="tierkreiszeichenbot-report" options="-parameters" />
       <module name="zodiac" options="-parameters" />
     </option>
   </component>

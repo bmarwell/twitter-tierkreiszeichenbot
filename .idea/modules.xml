@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/progressbar/progressbar.iml" filepath="$PROJECT_DIR$/progressbar/progressbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/bot/tierkreiszeichenbot-bot.iml" filepath="$PROJECT_DIR$/bot/tierkreiszeichenbot-bot.iml" />
       <module fileurl="file://$PROJECT_DIR$/parent/tierkreiszeichenbot-parent.iml" filepath="$PROJECT_DIR$/parent/tierkreiszeichenbot-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/report/tierkreiszeichenbot-report.iml" filepath="$PROJECT_DIR$/report/tierkreiszeichenbot-report.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/twitter-tierkreiszeichenbot.iml" filepath="$PROJECT_DIR$/.idea/twitter-tierkreiszeichenbot.iml" />
       <module fileurl="file://$PROJECT_DIR$/zodiac/zodiac.iml" filepath="$PROJECT_DIR$/zodiac/zodiac.iml" />
     </modules>

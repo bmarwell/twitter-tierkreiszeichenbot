@@ -37,7 +37,8 @@ public final class TweetUtil {
 
     final String tweet = String.format(
         "Heute ist der %d. Tag von %s.\n"
-            + "[%s] %.1f %%.\n"
+            // \u2009; is a thin non-breaking space.
+            + "%s %.1f\u2009%%\n"
             + "Noch %d Tag(e) bis %s.",
         zodiacUtil.getWholeDaysOver() + 1,
         current.getDescription(),
