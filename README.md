@@ -1,4 +1,5 @@
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Build Status](https://travis-ci.org/bmhm/twitter-tierkreiszeichenbot.svg?branch=master)](https://travis-ci.org/bmhm/twitter-tierkreiszeichenbot) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2759fda64e1941aa8009809c3557597e)](https://www.codacy.com/app/bmarwell/twitter-tierkreiszeichenbot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bmhm/twitter-tierkreiszeichenbot&amp;utm_campaign=Badge_Grade)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Build Status](https://travis-ci.org/bmhm/twitter-tierkreiszeichenbot.svg?branch=master)](https://travis-ci.org/bmhm/twitter-tierkreiszeichenbot) [![Maintainability](https://api.codeclimate.com/v1/badges/4465f0c11214c29f822f/maintainability)](https://codeclimate.com/github/bmhm/twitter-tierkreiszeichenbot/maintainability) [![codecov](https://codecov.io/gh/bmhm/twitter-tierkreiszeichenbot/branch/master/graph/badge.svg)](https://codecov.io/gh/bmhm/twitter-tierkreiszeichenbot)
+
 
 # twitter-tierkreiszeichenbot
 A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar graph.
