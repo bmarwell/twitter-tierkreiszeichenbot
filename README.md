@@ -7,11 +7,12 @@ A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar gra
 
 ### German Bot
 
-https://twitter.com/SternzeichenB
+[@Sternzeichenbot](https://twitter.com/SternzeichenB)
 
 ## Configuration
 
 ### Loading the configuration
+
 You can either put a file `application.properties` next to your
 jar file, or you can supply the path to the configuration
 via command line argument:  `--spring.config.location=file:$HOME/.config/zodiacbot.properties`*[]:
@@ -70,7 +71,7 @@ Because on twitter, length does matter! ;-)
     * You could use jvm args or program args, but this would expose your keys
       to all users on that system!
 
-Go to https://developer.twitter.com/ to get your auth information.
+Go to [developer.twitter.com](https://developer.twitter.com/) to get your auth information.
 
 ### Property twitter.debug (optional)
   * optional
@@ -89,7 +90,6 @@ Some more logging from the twitter library (twitter4j).
 If given The bot will only run until after 10 seconds and then tweet a single
 status update.
 Hint: Any crons may run in those time as well, resulting in more than one tweet.
-
 
 ## How to start
 
