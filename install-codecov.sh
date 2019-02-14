@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ./.bash_profile
+
 LATEST_ARTIFACT=$(curl \
   -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
   -H "User-Agent: bmhm/twitter-tierkreiszeichenbot" \
