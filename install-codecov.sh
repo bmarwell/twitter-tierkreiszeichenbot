@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . $HOME/.bash_profile
+set -x
 
 LATEST_ARTIFACT=$(curl \
   -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
@@ -15,6 +16,8 @@ LATEST_ARTIFACT=$(curl \
   --retry-delay 2 \
   "https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest" \
   | jq -r '.assets[0].browser_download_url')
+
+echo "Downloading $LATEST_ARTIFACT"
 
 curl \
   -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
