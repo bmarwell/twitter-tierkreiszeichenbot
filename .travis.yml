@@ -22,11 +22,10 @@ install:
   - bash ./install-jdk.sh
   - . $HOME/.jabba/jabba.sh && jabba use adopt-openj9@1.11.0-2
   - export JAVA_HOME="$(. $HOME/.jabba/jabba.sh && jabba which adopt-openj9@1.11.0-2)"
-  # install code cov jar
-  - bash ./install-codecov.sh
 
 script: mvn -B test verify
 
 
 after_success:
-  - java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r report/target/site/jacoco-aggregate/jacoco.xml --project-token "${CODACY_PROJECT_TOKEN}"
+  - mvn --batch-mode org.apache.maven.plugins:maven-dependency-plugin:3.1.1:copy -Dartifact=com.codacy:codacy-coverage-reporter:4.0.5:jar:assembly -Dtransitive=false -DouttDirectory=$(pwd)
+  - java -jar $(pwd)/codacy-coverage-reporter-4.0.5-assembly.jar report -l Java -r report/target/site/jacoco-aggregate/jacoco.xml --project-token "${CODACY_PROJECT_TOKEN}"
