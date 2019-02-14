@@ -7,15 +7,22 @@ cache:
     - '$HOME/.m2'
     - '$HOME/.jabba'
 
+addons:
+  apt:
+    packages:
+    - jq
+
+before_install:
+  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets[0].browser_download_url')
+
 install:
   # install jabba, if not existent
   - if [ !-f ~/.jabba/jabba.sh ]; then curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh; fi
   - . ~/.profile
   # install jdk if not installed
-  - if [ -z "$(jabba which adopt-openj9@1.11.0-2)" ]; then jabba install adopt-openj9@1.11.0-2; fi
-  - jabba use adopt-openj9@1.11.0-2
+  - if [ -z "$(~/.jabba/jabba.sh which adopt-openj9@1.11.0-2)" ]; then ~/.jabba/jabba.sh install adopt-openj9@1.11.0-2; fi
+  - ~/.jabba/jabba.sh use adopt-openj9@1.11.0-2
   - export JAVA_HOME="$(jabba which adopt-openj9@1.11.0-2)" 
 
 after_success:
-  - bash <(curl "http://central.maven.org/maven2/com/codacy/codacy-coverage-reporter/5.0.310/codacy-coverage-reporter-5.0.310.jar" -o ~/codacy-coverage-reporter-5.0.310.jar)
-  - bash <(java -cp ~/codacy-coverage-reporter-5.0.310.jar report -l Java -r jacoco.xml --projectToken "${CODACY_PROJECT_TOKEN}")
+  - bash <(java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r jacoco.xml --projectToken "${CODACY_PROJECT_TOKEN}")
