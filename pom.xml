@@ -28,5 +28,6 @@
     <!--<module>persist/sqlite</module>-->
 
     <module>bot</module>
+    <module>report</module>
   </modules>
 </project>
