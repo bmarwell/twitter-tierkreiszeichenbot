@@ -1,0 +1,19 @@
+language: java
+
+sudo: false
+
+script:
+  - if [ !-f ~/.jabba/jabba.sh ]; then curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh; fi
+  - . ~/.profile
+  - if [ -z "$(jabba which adopt-openj9@1.11.0-2)" ]; then jabba install adopt-openj9@1.11.0-2; fi
+  - jabba use adopt-openj9@1.11.0-2
+  - export JAVA_HOME="$(jabba which adopt-openj9@1.11.0-2)" 
+
+cache:
+  directories:
+    - '$HOME/.m2'
+    - '$HOME/.jabba/jdk'
+
+after_success:
+  - bash <(curl "http://central.maven.org/maven2/com/codacy/codacy-coverage-reporter/5.0.310/codacy-coverage-reporter-5.0.310.jar" -o ~/codacy-coverage-reporter-5.0.310.jar)
+  - bash <(java -cp ~/codacy-coverage-reporter-5.0.310.jar report -l Java -r jacoco.xml --projectToken "${CODACY_PROJECT_TOKEN}")
