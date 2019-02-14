@@ -16,14 +16,14 @@ addons:
 
 install:
   # install jabba, if not existent
-  - if [ ! -f "$HOME/.jabba/jabba.sh" ]; then curl -H "Authorization: token $GITHUB_OAUTH_TOKEN" -H "User-Agent: bmhm/twitter-tierkreiszeichenbot" --insecure --silent --show-error --fail --location --max-time 20 --retry 3 --retry-delay 2 https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh; fi
+  - bash ./jabba-install.sh
   - . ~/.profile
   # install jdk if not installed
-  - if [ -z "$(~/.jabba/jabba.sh which adopt-openj9@1.11.0-2)" ]; then ~/.jabba/jabba.sh install adopt-openj9@1.11.0-2; fi
-  - ~/.jabba/jabba.sh use adopt-openj9@1.11.0-2
+  - bash ./install-jdk.sh
+  - abba use adopt-openj9@1.11.0-2
   - export JAVA_HOME="$(jabba which adopt-openj9@1.11.0-2)"
   # install code cov jar
-  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar "$(curl -H "Authorization: token $GITHUB_OAUTH_TOKEN" -H "User-Agent: bmhm/twitter-tierkreiszeichenbot" --insecure --silent --show-error --fail --location --max-time 20 --retry 3 --retry-delay 2 https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets[0].browser_download_url')"
+  - bash ./install-codecov.sh
 
 # mvn will be run at this point
 
