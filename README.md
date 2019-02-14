@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2759fda64e1941aa8009809c3557597e)](https://www.codacy.com/app/bmarwell/twitter-tierkreiszeichenbot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bmhm/twitter-tierkreiszeichenbot&amp;utm_campaign=Badge_Grade)
 
 # twitter-tierkreiszeichenbot
 A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar graph.
