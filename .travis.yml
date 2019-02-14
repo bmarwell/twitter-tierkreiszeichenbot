@@ -28,4 +28,4 @@ install:
 # mvn will be run at this point
 
 after_success:
-  - bash <(java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r jacoco.xml --projectToken "${CODACY_PROJECT_TOKEN}")
+  - bash <(java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r jacoco.xml --project-token "${CODACY_PROJECT_TOKEN}")
