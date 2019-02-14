@@ -16,7 +16,7 @@ addons:
 
 install:
   # install jabba, if not existent
-  - bash ./jabba-install.sh
+  - bash ./install-jabba.sh
   - . ~/.profile
   # install jdk if not installed
   - bash ./install-jdk.sh
