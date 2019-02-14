@@ -35,14 +35,14 @@ Keep your java installation up to date for this.
 
 ### Properties for cron expressions
 
-  * `twitter.scheduler.daily.cron`
-    For every day except the first day of a zodiac.
+  * `twitter.scheduler.daily.cron`\
+    For every day except the first day of a zodiac.\
     Default: `0 31 5 * * ?` (daily at 5:31am)
-  * `twitter.scheduler.firstDay.cron`
-    Will only tweet on the first day of a zodiac sign.
+  * `twitter.scheduler.firstDay.cron`\
+    Will only tweet on the first day of a zodiac sign.\
     Default: `0 31 5 * * ?` (daily at 5:31am)
-  * `twitter.scheduler.print.cron`
-    Will print messages to stdout.
+  * `twitter.scheduler.print.cron`\
+    Will print messages to stdout.\
     Default: `0 0 * * * ?` (every minute).
 
 For debugging purposes, you can set cron expressions to `0 0 0 31 2`
