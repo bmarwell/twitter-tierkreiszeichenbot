@@ -50,6 +50,7 @@ public class ScheduleTweet {
   /**
    * Tweets the regular monday tweet.
    *
+   * <p><pre>
    * second
    * |      minute (0-59),
    * |      |      hour (0-23),
@@ -57,6 +58,7 @@ public class ScheduleTweet {
    * |      |       |       |       month of the year (1-12),
    * |      |       |       |       |      day of the week (0-6 with 0=Sunday).
    * |      |       |       |       |      |
+   * 0     31       5     1/1       *      ?</pre></p>
    */
   @Scheduled(cron = "${twitter.scheduler.daily.cron:0 31 5 1/1 * ?}")
   public void postDaily() {

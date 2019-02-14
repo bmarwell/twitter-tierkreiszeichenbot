@@ -69,22 +69,24 @@ public final class ZodiacUtil {
   }
 
   /**
-   * How many whole seconds have passed since start?
+   * Returns how many whole seconds have passed since start.
    *
    * <p>Hint: 2.990s will output 2.</p>
+   *
+   * @return number of elapsed seconds since start of this zodiac sign.
    */
-  public long getSecondsOver() {
+  public long getWholeSecondsElapsed() {
     LOG.debug("Start: [{}]. End: [{}].", this.currentStart, this.basis);
     return this.currentStart.until(this.basis, ChronoUnit.SECONDS);
   }
 
-  public long getWholeDaysOver() {
+  public long getWholeDaysElapsed() {
     return this.currentStart.until(this.basis, ChronoUnit.DAYS);
   }
 
   public double getPercentDone() {
     final long seconds = ChronoUnit.SECONDS.between(this.currentStart, this.nextStart);
-    final long over = getSecondsOver();
+    final long over = getWholeSecondsElapsed();
 
     return ((1.0d * over) / seconds);
   }

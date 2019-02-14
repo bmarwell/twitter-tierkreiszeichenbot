@@ -38,7 +38,7 @@ public final class TweetUtil {
             // \u2009; is a thin non-breaking space.
             + "%s %.1f\u2009%%\n"
             + "Noch %d Tag(e) bis %s.",
-        zodiacUtil.getWholeDaysOver() + 1,
+        zodiacUtil.getWholeDaysElapsed() + 1,
         current.getDescription(),
         progressbarUtil.getRepresentation(percentDone),
         percentDone * 100,

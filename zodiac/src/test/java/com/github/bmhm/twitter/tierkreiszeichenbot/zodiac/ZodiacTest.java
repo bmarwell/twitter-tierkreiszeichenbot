@@ -79,7 +79,7 @@ class ZodiacTest {
 
     final ZodiacUtil zodiacUtil = new ZodiacUtil(dt);
 
-    Assertions.assertAll(() -> assertEquals(0L, zodiacUtil.getWholeDaysOver()));
+    Assertions.assertAll(() -> assertEquals(0L, zodiacUtil.getWholeDaysElapsed()));
   }
 
   @Test
@@ -138,12 +138,12 @@ class ZodiacTest {
         BERLIN).minusSeconds(1L);
     final ZodiacUtil zodiacUtil = new ZodiacUtil(dt);
 
-    final long secondsOver = zodiacUtil.getSecondsOver();
+    final long secondsOver = zodiacUtil.getWholeSecondsElapsed();
     final long minutesOver = secondsOver / 60;
     final long hoursOver = minutesOver / 60;
     final long daysOver = hoursOver / 24;
     final long hoursExtra = hoursOver - (daysOver * 24);
-    final long wholeDaysOver = zodiacUtil.getWholeDaysOver();
+    final long wholeDaysOver = zodiacUtil.getWholeDaysElapsed();
 
     LOG.debug("{}d{}h ~= {}d.", daysOver, hoursExtra, wholeDaysOver);
 
@@ -158,12 +158,12 @@ class ZodiacTest {
         BERLIN).minusSeconds(1L);
     final ZodiacUtil zodiacUtil = new ZodiacUtil(dt);
 
-    final long secondsOver = zodiacUtil.getSecondsOver();
+    final long secondsOver = zodiacUtil.getWholeSecondsElapsed();
     final long minutesOver = secondsOver / 60;
     final long hoursOver = minutesOver / 60;
     final long daysOver = hoursOver / 24;
     final long hoursExtra = hoursOver - (daysOver * 24);
-    final long wholeDaysOver = zodiacUtil.getWholeDaysOver();
+    final long wholeDaysOver = zodiacUtil.getWholeDaysElapsed();
 
     LOG.debug("{}d{}h ~= {}d.", daysOver, hoursExtra, wholeDaysOver);
 
