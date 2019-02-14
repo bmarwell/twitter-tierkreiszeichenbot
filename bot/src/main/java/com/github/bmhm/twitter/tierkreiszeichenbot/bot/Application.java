@@ -16,6 +16,7 @@
 
 package com.github.bmhm.twitter.tierkreiszeichenbot.bot;
 
+import com.github.bmhm.twitter.tierkreiszeichenbot.progressbar.ProgressbarUtil;
 import com.github.bmhm.twitter.tierkreiszeichenbot.zodiac.ZodiacUtil;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -50,6 +51,10 @@ public class Application {
   @Autowired
   public Twitter twitter;
 
+  @Autowired
+  private ProgressbarUtil progressbarUtil;
+
+
   public static void main(final String[] args) {
     SpringApplication.run(Application.class, args);
   }
@@ -64,7 +69,7 @@ public class Application {
       LOG.info("Creating single tweet.");
       final ZonedDateTime now = ZonedDateTime.now(ZoneId.of(this.timezone));
       final ZodiacUtil zodiacUtil = new ZodiacUtil(now);
-      final StatusUpdate tweet = TweetUtil.createTweet(zodiacUtil);
+      final StatusUpdate tweet = TweetUtil.createTweet(zodiacUtil, this.progressbarUtil);
 
       try {
         LOG.info("Sending text: [{}].", tweet.getStatus().replace("\n", "\\n"));

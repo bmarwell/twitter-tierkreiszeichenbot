@@ -6,6 +6,7 @@ A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar gra
 ## Active bots
 
 ### German Bot
+
 https://twitter.com/SternzeichenB
 
 ## Configuration
@@ -16,10 +17,11 @@ jar file, or you can supply the path to the configuration
 via command line argument:  `--spring.config.location=file:$HOME/.config/zodiacbot.properties`*[]:
 
 ### Property user.timezone (required)
-* required
-* Defaults to: Europe/Berlin
-* Type: String
-* Via: JVM-Arg (`-Duser.timezone=Europe/Berlin`)
+
+  * required
+  * Defaults to: Europe/Berlin
+  * Type: String
+  * Via: JVM-Arg (`-Duser.timezone=Europe/Berlin`)
 
 This one should be given via jvm arg (`-Duser.timezone=Europe/Berlin`).
 It will set the timezone for the bot. It has a massive impact.
@@ -30,33 +32,59 @@ start and the current day. Without the timezone information, the bot would not
 be able to address leap days and leap seconds.
 Keep your java installation up to date for this.
 
+### Properties for cron expressions
+
+  * `twitter.scheduler.daily.cron`
+    For every day except the first day of a zodiac.
+    Default: `0 31 5 * * ?` (daily at 5:31am)
+  * `twitter.scheduler.firstDay.cron`
+    Will only tweet on the first day of a zodiac sign.
+    Default: `0 31 5 * * ?` (daily at 5:31am)
+  * `twitter.scheduler.print.cron`
+    Will print messages to stdout.
+    Default: `0 0 * * * ?` (every minute).
+
+For debugging purposes, you can set cron expressions to `0 0 0 31 2`
+(every 31st of February), which will never occur. :-)
+
+### Property `twitter.progressbar.length`
+
+  * optional
+  * Defaults to: `20`.
+  * Type: int
+  * Via: `.properties` file or JVM-arg or program arg.
+
+When it comes down to `█████████████████░░░` vs `█████████████░░░`.
+Because on twitter, length does matter! ;-)
+
 ### Properties twitter.oauth.* (required)
-* all 4 of them required
-  * twitter.oauth.consumerKey
-  * twitter.oauth.consumerSecret
-  * twitter.oauth.accessToken
-  * twitter.oauth.accessTokenSecret
-* Defaults to: `null` (i.e. will throw exceptions).
-* Type: Strings
-* Via: config file.
-  * You could use jvm args or program args, but this would expose your keys
-    to all users on that system!
+
+  * all 4 of them required
+    * twitter.oauth.consumerKey
+    * twitter.oauth.consumerSecret
+    * twitter.oauth.accessToken
+    * twitter.oauth.accessTokenSecret
+  * Defaults to: `null` (i.e. will throw exceptions).
+  * Type: Strings
+  * Via: config file.
+    * You could use jvm args or program args, but this would expose your keys
+      to all users on that system!
 
 Go to https://developer.twitter.com/ to get your auth information.
 
 ### Property twitter.debug (optional)
-* optional
-* Defaults to: `false`
-* Type: boolean
-* Via: property file (preferred) or any other means.
+  * optional
+  * Defaults to: `false`
+  * Type: boolean
+  * Via: property file (preferred) or any other means.
 
 Some more logging from the twitter library (twitter4j).
 
 ### Program arg `--doSingleTweet=true` (optional)
-* optional
-* Defauts to: `false`
-* Type: boolean
-* Via: preferred via program arg / command line.
+  * optional
+  * Defauts to: `false`
+  * Type: boolean
+  * Via: preferred via program arg / command line.
 
 If given The bot will only run until after 10 seconds and then tweet a single
 status update.

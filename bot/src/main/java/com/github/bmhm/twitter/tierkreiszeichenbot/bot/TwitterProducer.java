@@ -16,8 +16,12 @@
 
 package com.github.bmhm.twitter.tierkreiszeichenbot.bot;
 
+import com.github.bmhm.twitter.tierkreiszeichenbot.progressbar.ProgressType;
+import com.github.bmhm.twitter.tierkreiszeichenbot.progressbar.ProgressbarUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
@@ -37,5 +41,13 @@ public class TwitterProducer {
     final TwitterFactory tf = new TwitterFactory(cb.build());
 
     return tf.getInstance();
+  }
+
+  @Bean
+  @Scope("prototype")
+  public ProgressbarUtil getProgressbarUtil(
+      @Value("${twitter.progressbar.chars:}") final String progressbarChars,
+      @Value("${twitter.progressbar.length:20}") final int progressbarLength) {
+    return new ProgressbarUtil(ProgressType.BLOCK_SIMPLE, progressbarLength);
   }
 }

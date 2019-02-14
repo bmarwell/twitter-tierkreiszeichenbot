@@ -16,7 +16,6 @@
 
 package com.github.bmhm.twitter.tierkreiszeichenbot.bot;
 
-import com.github.bmhm.twitter.tierkreiszeichenbot.progressbar.ProgressType;
 import com.github.bmhm.twitter.tierkreiszeichenbot.progressbar.ProgressbarUtil;
 import com.github.bmhm.twitter.tierkreiszeichenbot.zodiac.Zodiac;
 import com.github.bmhm.twitter.tierkreiszeichenbot.zodiac.ZodiacUtil;
@@ -28,8 +27,7 @@ public final class TweetUtil {
     // util class.
   }
 
-  public static StatusUpdate createTweet(final ZodiacUtil zodiacUtil) {
-    final ProgressbarUtil progressbarUtil = new ProgressbarUtil(ProgressType.BLOCK_SIMPLE, 20);
+  public static StatusUpdate createTweet(final ZodiacUtil zodiacUtil, final ProgressbarUtil progressbarUtil) {
     final Zodiac current = zodiacUtil.getCurrent();
 
     final Zodiac nextZodiac = zodiacUtil.getNext();

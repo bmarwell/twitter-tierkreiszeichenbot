@@ -18,6 +18,7 @@ package com.github.bmhm.twitter.tierkreiszeichenbot.bot;
 
 import static com.github.bmhm.twitter.tierkreiszeichenbot.bot.TweetUtil.createTweet;
 
+import com.github.bmhm.twitter.tierkreiszeichenbot.progressbar.ProgressbarUtil;
 import com.github.bmhm.twitter.tierkreiszeichenbot.zodiac.Zodiac;
 import com.github.bmhm.twitter.tierkreiszeichenbot.zodiac.ZodiacUtil;
 import java.time.ZoneId;
@@ -43,6 +44,9 @@ public class ScheduleTweet {
   @Autowired
   private Twitter twitter;
 
+  @Autowired
+  private ProgressbarUtil progressbarUtil;
+
   /**
    * Tweets the regular monday tweet.
    *
@@ -65,7 +69,7 @@ public class ScheduleTweet {
       return;
     }
 
-    final StatusUpdate tweet = createTweet(zodiacUtil);
+    final StatusUpdate tweet = createTweet(zodiacUtil, this.progressbarUtil);
     try {
       this.twitter.updateStatus(tweet);
     } catch (final TwitterException tweetException) {
@@ -84,7 +88,8 @@ public class ScheduleTweet {
       return;
     }
 
-    final StatusUpdate tweet = createTweet(zodiacUtil);
+    final StatusUpdate tweet = createTweet(zodiacUtil, this.progressbarUtil);
+
     try {
       this.twitter.updateStatus(tweet);
     } catch (final TwitterException tweetException) {
@@ -97,7 +102,7 @@ public class ScheduleTweet {
     final ZonedDateTime now = ZonedDateTime.now(ZoneId.of(this.timezone));
     final ZodiacUtil zodiacUtil = new ZodiacUtil(now);
 
-    final StatusUpdate tweet = createTweet(zodiacUtil);
+    final StatusUpdate tweet = createTweet(zodiacUtil, this.progressbarUtil);
     LOG.info("{}", tweet.toString().replace("\n", "\\n"));
   }
 
