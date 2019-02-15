@@ -6,9 +6,8 @@ A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar gra
 
 ## Active bots
 
-### German Bot
-
-[@SternzeichenB](https://twitter.com/SternzeichenB)
+  * 🇩🇪 [@SternzeichenB](https://twitter.com/SternzeichenB) (German, tz=Europe/Berlin)
+  * 🇬🇧 [@BotZodiac](https://twitter.com/BotZodiac) (British English, tz=Europe/London) 
 
 ## Configuration
 
@@ -116,8 +115,9 @@ You can start this spring boot application via script or command line like this:
 # Just make sure JAVA_HOME and PATH are set correctly.
 jabba use "adopt-openj9@1.11.0-2"
 # start like this
-java -jar ~/bin/tierkreiszeichenbot-bot-0.1.0-SNAPSHOT.jar \
+java \
+  -Duser.language=de \
+  -jar ~/bin/tierkreiszeichenbot-bot-0.1.0-SNAPSHOT.jar \
   --spring.config.location=file:$HOME/.config/sternzeichenbot.properties \
-  --user.timezone=Europe/Sofia \
-  --user.language=de
+  --user.timezone=Europe/Sofia
 ```
