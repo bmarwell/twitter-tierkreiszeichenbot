@@ -21,36 +21,50 @@ import com.github.bmhm.twitter.tierkreiszeichenbot.zodiac.Zodiac;
 import com.github.bmhm.twitter.tierkreiszeichenbot.zodiac.ZodiacUtil;
 import twitter4j.StatusUpdate;
 
+import java.text.MessageFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public final class TweetUtil {
+
+  private static final String CLASS_NAME = TweetUtil.class.getCanonicalName();
 
   private TweetUtil() {
     // util class.
   }
 
-  public static StatusUpdate createTweet(final ZodiacUtil zodiacUtil, final ProgressbarUtil progressbarUtil) {
+  public static StatusUpdate createTweet(
+      final ZodiacUtil zodiacUtil,
+      final ProgressbarUtil progressbarUtil,
+      final Locale locale) {
     final Zodiac current = zodiacUtil.getCurrent();
 
     final Zodiac nextZodiac = zodiacUtil.getNext();
     final double percentDone = zodiacUtil.getPercentDone();
 
-    final String tweet = String.format(
-            // \u2009; is a thin space.
-            // \u00A0; is a non-breaking space.
-            // \u202F; is a thin non-breaking space.
-        "Heute ist der %d.\u202FTag von %s.\n"
-            + "%s\u00A0%.1f\u202F%%\n"
-            + "Noch %d Tag(e) bis %s.",
+    final ResourceBundle messages = ResourceBundle.getBundle(CLASS_NAME, locale);
+    final String tweetTemplate = messages.getString("tweet");
+
+    final MessageFormat form = new MessageFormat(tweetTemplate, locale);
+    final Object[] formatArgs = {
         zodiacUtil.getWholeDaysElapsed() + 1,
-        current.getDescription(),
+        current.getDisplayName(),
         progressbarUtil.getRepresentation(percentDone),
         percentDone * 100,
         zodiacUtil.getWholeDaysLeft() + 1,
-        nextZodiac.getDescription());
-
+        nextZodiac.getDisplayName()
+    };
+    final String tweet = form.format(formatArgs);
     final StatusUpdate statusUpdate = new StatusUpdate(tweet);
     statusUpdate.setPossiblySensitive(false);
 
     return statusUpdate;
+  }
+
+  public static StatusUpdate createTweet(
+      final ZodiacUtil zodiacUtil,
+      final ProgressbarUtil progressbarUtil) {
+    return createTweet(zodiacUtil, progressbarUtil, Locale.getDefault());
   }
 
 }

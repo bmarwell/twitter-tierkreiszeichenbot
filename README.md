@@ -34,6 +34,21 @@ start and the current day. Without the timezone information, the bot would not
 be able to address leap days and leap seconds.
 Keep your java installation up to date for this.
 
+### Property `user.language` (highly recommended)
+
+  * optional, but highly recommended
+  * Defaults to: Your system language / en.
+  * Type: String (iso2 language code)
+  * Via: JVM-Arg (`-Duser.language=de`)
+
+This property can only be set via jvm arg, as the application ONLY
+relies on `Locale.getDefault()`. The idea is not to introduce spring
+dependencies on modules which would otherwise not neet spring dependencies.
+
+If you don't set your locale, it will default to your system language.
+If no translation for this language is available, it will fall back to
+english.
+
 ### Properties for cron expressions
 
   * `twitter.scheduler.daily.cron`\
@@ -44,7 +59,7 @@ Keep your java installation up to date for this.
     Default: `0 31 5 * * ?` (daily at 5:31am)
   * `twitter.scheduler.print.cron`\
     Will print messages to stdout.\
-    Default: `0 0 * * * ?` (every minute).
+    Default: `0 0 * * * ?` (every hour).
 
 For debugging purposes, you can set cron expressions to `0 0 0 31 2`
 (every 31st of February), which will never occur. :-)
@@ -101,5 +116,8 @@ You can start this spring boot application via script or command line like this:
 # Just make sure JAVA_HOME and PATH are set correctly.
 jabba use "adopt-openj9@1.11.0-2"
 # start like this
-java -jar ~/bin/tierkreiszeichenbot-bot-0.1.0-SNAPSHOT.jar --spring.config.location=file:$HOME/.config/sternzeichenbot.properties
+java -jar ~/bin/tierkreiszeichenbot-bot-0.1.0-SNAPSHOT.jar \
+  --spring.config.location=file:$HOME/.config/sternzeichenbot.properties \
+  --user.timezone=Europe/Sofia \
+  --user.language=de
 ```

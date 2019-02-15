@@ -1,13 +1,21 @@
 package com.github.bmhm.twitter.tierkreiszeichenbot.zodiac;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 /*
  *  Copyright 2018 The twitter-tierkreiszeichenbot contributors
  *
@@ -170,4 +178,30 @@ class ZodiacTest {
     assertEquals(0L, wholeDaysOver);
   }
 
+
+  @ParameterizedTest()
+  @MethodSource("zodiacProvider")
+  void testTranslations(final Locale locale, final Zodiac zodiac) {
+    final String displayName = zodiac.getDisplayName(locale);
+    LOG.debug("Zodiac [{}]: [{}].", zodiac.name(), displayName);
+
+    Assertions.assertAll(
+        () -> Assertions.assertFalse(displayName.isEmpty())
+    );
+  }
+
+  static Stream<Arguments> zodiacProvider() {
+    final Set<String> langCodes = Set.of("de", "en", "gk", "gr", "nds", "fr", "it");
+    return langCodes.stream()
+        .map(Locale::new)
+        .filter(locale -> locale.getDisplayVariant().isEmpty())
+        .filter(locale -> locale.getCountry().isEmpty())
+        .filter(locale -> locale.getDisplayScript().isEmpty())
+        .flatMap(ZodiacTest::localeZodiacProvider);
+  }
+
+  static Stream<Arguments> localeZodiacProvider(final Locale locale) {
+    return Arrays.stream(Zodiac.values())
+        .map(zodiac -> Arguments.of(locale, zodiac));
+  }
 }

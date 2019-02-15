@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run printing (en)" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.github.bmhm.twitter.tierkreiszeichenbot.bot.Application" />
+    <module name="tierkreiszeichenbot-bot" />
+    <option name="PROGRAM_PARAMETERS" value="--spring.config.location=file:$USER_HOME$/.config/sternzeichenbot.properties --twitter.scheduler.print.cron=&quot;*/10 * * * * ?&quot;" />
+    <option name="VM_PARAMETERS" value="-Duser.language=en" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.github.bmhm.twitter.tierkreiszeichenbot.bot.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -6,34 +6,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="progressbar" />
-        <module name="sqlite" />
         <module name="tierkreiszeichenbot-bot" />
+        <module name="tierkreiszeichenbot-common-value" />
+        <module name="tierkreiszeichenbot-persist-api" />
+        <module name="tierkreiszeichenbot-persist-sqlite" />
+        <module name="tierkreiszeichenbot-progressbar" />
         <module name="tierkreiszeichenbot-report" />
-        <module name="zodiac" />
+        <module name="tierkreiszeichenbot-zodiac" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="progressbar" target="1.8" />
-      <module name="tierkreiszeichenbot-bot" target="1.8" />
-      <module name="tierkreiszeichenbot-common-value" target="1.8" />
-      <module name="tierkreiszeichenbot-parent" target="1.8" />
-      <module name="tierkreiszeichenbot-persist-api" target="1.8" />
-      <module name="tierkreiszeichenbot-persist-sqlite" target="1.8" />
-      <module name="tierkreiszeichenbot-report" target="1.8" />
-      <module name="twitter-tierkreiszeichenbot" target="1.8" />
-      <module name="zodiac" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="progressbar" options="-parameters" />
       <module name="tierkreiszeichenbot-bot" options="-parameters" />
       <module name="tierkreiszeichenbot-common-value" options="-parameters" />
       <module name="tierkreiszeichenbot-persist-api" options="-parameters" />
       <module name="tierkreiszeichenbot-persist-sqlite" options="-parameters" />
+      <module name="tierkreiszeichenbot-progressbar" options="-parameters" />
       <module name="tierkreiszeichenbot-report" options="-parameters" />
-      <module name="zodiac" options="-parameters" />
+      <module name="tierkreiszeichenbot-zodiac" options="-parameters" />
     </option>
   </component>
 </project>

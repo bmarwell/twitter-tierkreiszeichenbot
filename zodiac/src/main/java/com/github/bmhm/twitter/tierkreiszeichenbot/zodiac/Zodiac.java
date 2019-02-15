@@ -16,38 +16,46 @@ package com.github.bmhm.twitter.tierkreiszeichenbot.zodiac;/*
 
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.StringJoiner;
 
 public enum Zodiac {
-  ARIES("Widder", 3, 21),
-  TAURUS("Stier", 4, 21),
-  GEMINI("Zwillinge", 5, 21),
-  CANCER("Krebs", 6, 22),
-  LEO("Löwe", 7, 23),
-  VIRGO("Jungfrau", 8, 24),
-  LIBRA("Waage", 9, 24),
-  SCORPIO("Skorpion", 10, 24),
-  SAGITTARIUS("Schütze", 11, 23),
-  CAPRICORNUS("Steinbock", 12, 22),
-  AQUARIUS("Wassermann", 1, 21),
+  ARIES(3, 21),
+  TAURUS(4, 21),
+  GEMINI(5, 21),
+  CANCER(6, 22),
+  LEO(7, 23),
+  VIRGO(8, 24),
+  LIBRA(9, 24),
+  SCORPIO(10, 24),
+  SAGITTARIUS(11, 23),
+  CAPRICORNUS(12, 22),
+  AQUARIUS(1, 21),
   /**
    * Fische. Pisces.
    */
-  PISCES("Fische", 2, 20);
+  PISCES(2, 20);
 
 
   private final String description;
   private final int monthStart;
   private final int dayStart;
 
-  Zodiac(final String germanName, final int monthStart, final int dayStart) {
-    this.description = germanName;
+  Zodiac(final int monthStart, final int dayStart) {
+    final ResourceBundle messages = ResourceBundle.getBundle(this.getClass().getCanonicalName());
+    this.description = messages.getString(this.name());
     this.monthStart = monthStart;
     this.dayStart = dayStart;
   }
 
-  public String getDescription() {
+  public String getDisplayName() {
     return this.description;
+  }
+
+  public String getDisplayName(final Locale locale) {
+    final ResourceBundle messages = ResourceBundle.getBundle(this.getClass().getCanonicalName(), locale);
+    return messages.getString(this.name());
   }
 
   public int getMonthStart() {
