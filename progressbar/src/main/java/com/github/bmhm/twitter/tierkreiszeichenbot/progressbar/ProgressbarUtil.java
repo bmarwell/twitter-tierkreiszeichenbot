@@ -24,17 +24,25 @@ public class ProgressbarUtil {
 
   private static final Logger LOG = LoggerFactory.getLogger(ProgressbarUtil.class);
 
-  private final ProgressType type;
+  private final char[] blocks;
   private final int barLength;
   private final char emptyChar;
   private final char fullChar;
 
   public ProgressbarUtil(final ProgressType type, final int barLength) {
-    this.type = type;
+    this.blocks = type.getBlockChars();
     this.barLength = barLength;
 
-    this.emptyChar = this.type.getEmptyChar();
-    this.fullChar = this.type.getFullChar();
+    this.emptyChar = type.getEmptyChar();
+    this.fullChar = type.getFullChar();
+  }
+
+  public ProgressbarUtil(final char[] chars, final int barLength) {
+    this.blocks = chars;
+    this.barLength = barLength;
+
+    this.emptyChar = this.blocks[0];
+    this.fullChar = this.blocks[blocks.length - 1];
   }
 
   public String getRepresentation(final double percent) {
@@ -60,14 +68,14 @@ public class ProgressbarUtil {
 
     return String.format("%s%s%s",
         repeat(this.fullChar, fullFieldCount),
-        repeat(this.type.getBlockChars()[halfStepIndex], halfStepCount),
+        repeat(this.blocks[halfStepIndex], halfStepCount),
         repeat(this.emptyChar, emptyFieldCount)
     );
   }
 
   private int getHalfStepIndex(final double fractionField) {
     LOG.trace("Remainder: [{}].", fractionField);
-    final int round = (int) Math.round(fractionField * (this.type.getCharCount() - 1));
+    final int round = (int) Math.round(fractionField * (this.blocks.length - 1));
     if (round < 0) {
       return 0;
     }
@@ -105,8 +113,8 @@ public class ProgressbarUtil {
     return new String(buf);
   }
 
-  public ProgressType getType() {
-    return this.type;
+  public char[] getBlockChars() {
+    return this.blocks;
   }
 
   public int getBarLength() {
@@ -124,7 +132,7 @@ public class ProgressbarUtil {
   @Override
   public String toString() {
     return new StringJoiner(", ", "ProgressbarUtil{", "}")
-        .add("type=" + this.type)
+        .add("blocks=" + this.blocks)
         .add("barLength=" + this.barLength)
         .add("emptyChar=" + this.emptyChar)
         .add("fullChar=" + this.fullChar)

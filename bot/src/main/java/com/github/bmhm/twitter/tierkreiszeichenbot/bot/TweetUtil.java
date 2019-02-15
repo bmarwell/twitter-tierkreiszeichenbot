@@ -34,9 +34,10 @@ public final class TweetUtil {
     final double percentDone = zodiacUtil.getPercentDone();
 
     final String tweet = String.format(
-        "Heute ist der %d. Tag von %s.\n"
-            // \u2009; is a thin non-breaking space.
-            + "%s %.1f\u2009%%\n"
+            // \u2009; is a thin space.
+            // \u202F; is a thin non-breaking space.
+        "Heute ist der %d.\u202FTag von %s.\n"
+            + "%s\u202F%.1f\u202F%%\n"
             + "Noch %d Tag(e) bis %s.",
         zodiacUtil.getWholeDaysElapsed() + 1,
         current.getDescription(),

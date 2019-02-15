@@ -47,7 +47,7 @@ public class TwitterProducer {
   @Scope("prototype")
   public ProgressbarUtil getProgressbarUtil(
       @Value("${twitter.progressbar.chars:}") final String progressbarChars,
-      @Value("${twitter.progressbar.length:20}") final int progressbarLength) {
+      @Value("${twitter.progressbar.length:18}") final int progressbarLength) {
     return new ProgressbarUtil(ProgressType.BLOCK_SIMPLE, progressbarLength);
   }
 }

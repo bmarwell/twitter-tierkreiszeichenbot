@@ -8,7 +8,7 @@ A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar gra
 
 ### German Bot
 
-[@Sternzeichenbot](https://twitter.com/SternzeichenB)
+[@SternzeichenB](https://twitter.com/SternzeichenB)
 
 ## Configuration
 
@@ -52,7 +52,7 @@ For debugging purposes, you can set cron expressions to `0 0 0 31 2`
 ### Property `twitter.progressbar.length`
 
   * optional
-  * Defaults to: `20`.
+  * Defaults to: `18`.
   * Type: int
   * Via: `.properties` file or JVM-arg or program arg.
 
