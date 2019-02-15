@@ -15,7 +15,7 @@ A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar gra
 
 You can either put a file `application.properties` next to your
 jar file, or you can supply the path to the configuration
-via command line argument:  `--spring.config.location=file:$HOME/.config/zodiacbot.properties`*[]:
+via command line argument:  `--spring.config.location=file:$HOME/.config/zodiacbot.properties`.
 
 ### Property user.timezone (required)
 
