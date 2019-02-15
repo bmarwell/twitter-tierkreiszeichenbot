@@ -35,9 +35,10 @@ public final class TweetUtil {
 
     final String tweet = String.format(
             // \u2009; is a thin space.
+            // \u00A0; is a non-breaking space.
             // \u202F; is a thin non-breaking space.
         "Heute ist der %d.\u202FTag von %s.\n"
-            + "%s\u202F%.1f\u202F%%\n"
+            + "%s\u00A0%.1f\u202F%%\n"
             + "Noch %d Tag(e) bis %s.",
         zodiacUtil.getWholeDaysElapsed() + 1,
         current.getDescription(),
