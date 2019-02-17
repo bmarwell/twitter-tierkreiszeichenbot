@@ -14,9 +14,17 @@ package com.github.bmhm.twitter.tierkreiszeichenbot.zodiac;/*
  *  limitations under the License.
  */
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.slf4j.LoggerFactory;
+
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.StringJoiner;
 
@@ -120,6 +128,24 @@ public enum Zodiac {
         && currentOccurrence.getYear() == now.getYear();
   }
 
+  @Nullable
+  public InputStream getImage() {
+    final String lowercaseName = this.name().toLowerCase(Locale.ENGLISH);
+
+    return this.getClass().getClassLoader().getResourceAsStream("com/github/bmhm/twitter/tierkreiszeichenbot/zodiac/symbols/" + lowercaseName + ".png");
+  }
+
+
+  private static Optional<? extends URI> urlToOptionalUri(final URL url) {
+    try {
+      return Optional.of(url.toURI());
+    } catch (final URISyntaxException uriEx) {
+      LoggerFactory.getLogger(Zodiac.class).error("Unable to load bundles resource: [{}]", url, uriEx);
+
+      return Optional.empty();
+    }
+  }
+
   @Override
   public String toString() {
     return new StringJoiner(", ", "Zodiac{", "}")
@@ -128,5 +154,4 @@ public enum Zodiac {
         .add("dayStart=" + this.dayStart)
         .toString();
   }
-
 }

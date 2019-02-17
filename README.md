@@ -96,7 +96,7 @@ Go to [developer.twitter.com](https://developer.twitter.com/) to get your auth i
 
 Some more logging from the twitter library (twitter4j).
 
-### Program arg `--doSingleTweet=true` (optional)
+### Program arg `--do-single-tweet=true` (optional)
   * optional
   * Defauts to: `false`
   * Type: boolean
@@ -105,6 +105,12 @@ Some more logging from the twitter library (twitter4j).
 If given The bot will only run until after 10 seconds and then tweet a single
 status update.
 Hint: Any crons may run in those time as well, resulting in more than one tweet.
+
+### Program arg `--do-upload-image=true` (optional)
+  * optional
+  * Defaults to: `false`
+  * Type: boolean
+  * Via: preferred via program arg / command line.
 
 ## How to start
 
