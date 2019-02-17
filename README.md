@@ -89,10 +89,20 @@ Because on twitter, length does matter! ;-)
 Go to [developer.twitter.com](https://developer.twitter.com/) to get your auth information.
 
 ### Property twitter.debug (optional)
+
   * optional
   * Defaults to: `false`
   * Type: boolean
   * Via: property file (preferred) or any other means.
+
+### Property twitter.image.upload.disabled
+
+  * optional
+  * Defaults to: `false`
+  * Type: boolean
+  * Via: property file (preferred) or any other means.
+
+If set to `true`, no image update will be done on a 1st of zodiac sign.
 
 Some more logging from the twitter library (twitter4j).
 
@@ -107,6 +117,7 @@ status update.
 Hint: Any crons may run in those time as well, resulting in more than one tweet.
 
 ### Program arg `--do-upload-image=true` (optional)
+
   * optional
   * Defaults to: `false`
   * Type: boolean

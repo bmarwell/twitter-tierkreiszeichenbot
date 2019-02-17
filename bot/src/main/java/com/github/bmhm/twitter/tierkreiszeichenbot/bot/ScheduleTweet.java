@@ -44,6 +44,9 @@ public class ScheduleTweet {
   @Value("${user.timezone:Europe/Berlin}")
   private String timezone;
 
+  @Value("${twitter.image.upload.disabled:false}")
+  private boolean imageUploadDisabled;
+
   @Autowired
   private Twitter twitter;
 
@@ -92,8 +95,11 @@ public class ScheduleTweet {
     final StatusUpdate tweet = createTweet(zodiacUtil, this.progressbarUtil);
 
     trySendTweet(tweet);
-    // this will only happen on the first day of this zodiac.
-    tryUploadImage(current, tweet);
+
+    if (!this.imageUploadDisabled) {
+      // this will only happen on the first day of this zodiac.
+      tryUploadImage(current, tweet);
+    }
   }
 
   private void tryUploadImage(final Zodiac current, final StatusUpdate tweet) {
