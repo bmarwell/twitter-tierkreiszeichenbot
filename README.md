@@ -8,120 +8,20 @@ A zodiac sign bot for twitter. Can post zodiac updates with a nice ASCII bar gra
 
   * 🇩🇪 [@SternzeichenB](https://twitter.com/SternzeichenB) (German, tz=Europe/Berlin)
   * 🇬🇧 [@BotZodiac](https://twitter.com/BotZodiac) (British English, tz=Europe/London) 
+  
+## Features
+
+  * You can enable or disable the progressbar.
+  * You can set a custom progressbar length.
+  * Translated to German and English, more languages are easy to add.
+  * TimeZone support.
+  * Will change avatar (twitter profile picture) according to zodiac sign.
+  * (Coming) will react to simple questions.
+  * (Coming) custom ASCII art bar characters.
 
 ## Configuration
 
-### Loading the configuration
-
-You can either put a file `application.properties` next to your
-jar file, or you can supply the path to the configuration
-via command line argument:  `--spring.config.location=file:$HOME/.config/zodiacbot.properties`.
-
-### Property user.timezone (required)
-
-  * required
-  * Defaults to: Europe/Berlin
-  * Type: String
-  * Via: JVM-Arg (`-Duser.timezone=Europe/Berlin`)
-
-This one should be given via jvm arg (`-Duser.timezone=Europe/Berlin`).
-It will set the timezone for the bot. It has a massive impact.
-First of all, it will be the source for your cron job (when the bot will post).
-Furthermore, the timezone will be in effect when calculating days and seconds
-between the current day and the next zodiac start, and between the current zodiac
-start and the current day. Without the timezone information, the bot would not
-be able to address leap days and leap seconds.
-Keep your java installation up to date for this.
-
-### Property `user.language` (highly recommended)
-
-  * optional, but highly recommended
-  * Defaults to: Your system language / en.
-  * Type: String (iso2 language code)
-  * Via: JVM-Arg (`-Duser.language=de`)
-
-This property can only be set via jvm arg, as the application ONLY
-relies on `Locale.getDefault()`. The idea is not to introduce spring
-dependencies on modules which would otherwise not neet spring dependencies.
-
-If you don't set your locale, it will default to your system language.
-If no translation for this language is available, it will fall back to
-english.
-
-### Properties for cron expressions
-
-  * `twitter.scheduler.daily.cron`\
-    For every day except the first day of a zodiac.\
-    Default: `0 31 5 * * ?` (daily at 5:31am)
-  * `twitter.scheduler.firstDay.cron`\
-    Will only tweet on the first day of a zodiac sign.\
-    Default: `0 31 5 * * ?` (daily at 5:31am)
-  * `twitter.scheduler.print.cron`\
-    Will print messages to stdout.\
-    Default: `0 0 * * * ?` (every hour).
-
-For debugging purposes, you can set cron expressions to `0 0 0 31 2`
-(every 31st of February), which will never occur. :-)
-
-### Property `twitter.progressbar.length`
-
-  * optional
-  * Defaults to: `18`.
-  * Type: int
-  * Via: `.properties` file or JVM-arg or program arg.
-
-When it comes down to `█████████████████░░░` vs `█████████████░░░`.
-Because on twitter, length does matter! ;-)
-
-### Properties twitter.oauth.* (required)
-
-  * all 4 of them required
-    * twitter.oauth.consumerKey
-    * twitter.oauth.consumerSecret
-    * twitter.oauth.accessToken
-    * twitter.oauth.accessTokenSecret
-  * Defaults to: `null` (i.e. will throw exceptions).
-  * Type: Strings
-  * Via: config file.
-    * You could use jvm args or program args, but this would expose your keys
-      to all users on that system!
-
-Go to [developer.twitter.com](https://developer.twitter.com/) to get your auth information.
-
-### Property twitter.debug (optional)
-
-  * optional
-  * Defaults to: `false`
-  * Type: boolean
-  * Via: property file (preferred) or any other means.
-
-### Property twitter.image.upload.disabled
-
-  * optional
-  * Defaults to: `false`
-  * Type: boolean
-  * Via: property file (preferred) or any other means.
-
-If set to `true`, no image update will be done on a 1st of zodiac sign.
-
-Some more logging from the twitter library (twitter4j).
-
-### Program arg `--do-single-tweet=true` (optional)
-  * optional
-  * Defauts to: `false`
-  * Type: boolean
-  * Via: preferred via program arg / command line.
-
-If given The bot will only run until after 10 seconds and then tweet a single
-status update.
-Hint: Any crons may run in those time as well, resulting in more than one tweet.
-
-### Program arg `--do-upload-image=true` (optional)
-
-  * optional
-  * Defaults to: `false`
-  * Type: boolean
-  * Via: preferred via program arg / command line.
+See [Wiki:Configuration](https://github.com/bmhm/twitter-tierkreiszeichenbot/wiki/Configuration).
 
 ## How to start
 
